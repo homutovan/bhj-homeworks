@@ -4,10 +4,12 @@ class Game {
     this.wordElement = container.querySelector('.word');
     this.winsElement = container.querySelector('.status__wins');
     this.lossElement = container.querySelector('.status__loss');
+    this.timerElement = container.querySelector('.timer');
 
     this.reset();
-
     this.registerEvents();
+
+    setInterval(this.countdown.bind(this), 1000);
   }
 
   reset() {
@@ -17,14 +19,8 @@ class Game {
   }
 
   registerEvents() {
-    /*
-      TODO:
-      Написать обработчик события, который откликается
-      на каждый введённый символ.
-      В случае правильного ввода слова вызываем this.success()
-      При неправильном вводе символа - this.fail();
-     */
-  }
+    document.addEventListener('keydown', e => (this.currentSymbol.textContent == e.key.toLowerCase()) ? this.success() : this.fail());
+  } //Не понял, для чего использовать коды клавиш и utf-16, т.к. символы сравниваются корректно
 
   success() {
     this.currentSymbol.classList.add('symbol_correct');
@@ -50,8 +46,12 @@ class Game {
 
   setNewWord() {
     const word = this.getWord();
-
+    this.timerElement.textContent = word.length;
     this.renderWord(word);
+  }
+
+  countdown() {
+    --this.timerElement.textContent ? '' : this.fail();
   }
 
   getWord() {
@@ -66,7 +66,8 @@ class Game {
         'popcorn',
         'cinema',
         'love',
-        'javascript'
+        'javascript',
+        'я люблю kitkat'
       ],
       index = Math.floor(Math.random() * words.length);
 
@@ -87,4 +88,3 @@ class Game {
 }
 
 new Game(document.getElementById('game'))
-
