@@ -69,6 +69,10 @@ body {
   color: #fff;
 }
 
+.cart__product :hover {
+  opacity: 0.5;
+}
+
 .product__quantity-value {
   box-sizing: border-box;
   padding: 0 10px;
