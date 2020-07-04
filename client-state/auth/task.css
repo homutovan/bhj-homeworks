@@ -5,10 +5,13 @@ body {
 .signin {
   display: none;
 }
-.signin_active {
+
+.sign_active {
   display: block;
 }
+
 .control {
+  margin: 5px;
   padding: 20px;
   border-radius: 25px;
   border: 1px solid gray;
@@ -17,6 +20,7 @@ body {
 }
 
 .btn {
+  margin: 5px;
   background: green;
   color: white;
   padding: 20px;
