@@ -18,7 +18,10 @@ document.addEventListener('submit', e => {
         if (this.readyState === this.DONE && this.status === 200) {
             let response = JSON.parse(this.response);
             if (response.success) showUser(response.user_id);
-            else alert('Неверный логин/пароль');
+            else {
+                document.forms.signin__form.reset();
+                alert('Неверный логин/пароль');
+            }
         }
     });
     xhr.send(formData);
